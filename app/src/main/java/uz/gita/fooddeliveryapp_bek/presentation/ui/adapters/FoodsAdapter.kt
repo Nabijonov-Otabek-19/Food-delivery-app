@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import uz.gita.fooddeliveryapp_bek.databinding.ItemFoodBinding
 
-class HomeAdapter : Adapter<HomeAdapter.ItemHolder>() {
+class FoodsAdapter : Adapter<FoodsAdapter.ItemHolder>() {
 
     inner class ItemHolder(private val binding: ItemFoodBinding) :
         ViewHolder(binding.root) {
