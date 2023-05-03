@@ -30,6 +30,7 @@ class SignUpScreen : Fragment(R.layout.signup_screen) {
 
                 ).addOnSuccessListener {
                     Toast.makeText(requireContext(), it.user.toString(), Toast.LENGTH_SHORT).show()
+                    findNavController().popBackStack()
                     findNavController().navigate(R.id.homeScreen)
 
                 }.addOnFailureListener {
@@ -38,6 +39,7 @@ class SignUpScreen : Fragment(R.layout.signup_screen) {
             }
 
             btnSignIn.setOnClickListener {
+                findNavController().popBackStack()
                 findNavController().navigate(R.id.signInScreen)
             }
         }

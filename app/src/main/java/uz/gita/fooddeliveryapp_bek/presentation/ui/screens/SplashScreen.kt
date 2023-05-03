@@ -20,10 +20,11 @@ class SplashScreen : Fragment(R.layout.splash_screen) {
         val user = Firebase.auth.currentUser
 
         Handler(Looper.getMainLooper()).postDelayed({
-
             if (user == null) {
+                findNavController().popBackStack()
                 findNavController().navigate(R.id.signUpScreen)
             } else {
+                findNavController().popBackStack()
                 findNavController().navigate(R.id.homeScreen)
             }
         }, 1000)

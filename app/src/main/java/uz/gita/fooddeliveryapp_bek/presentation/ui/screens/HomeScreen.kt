@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import uz.gita.fooddeliveryapp_bek.R
@@ -21,7 +23,7 @@ class HomeScreen : Fragment(R.layout.home_screen) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val user = Firebase.auth.currentUser!!
+        val user = FirebaseAuth.getInstance().currentUser!!
 
         binding.apply {
             recycler.layoutManager = LinearLayoutManager(requireContext())
@@ -31,6 +33,7 @@ class HomeScreen : Fragment(R.layout.home_screen) {
             btnLogout.setOnClickListener {
                 user.delete().addOnCompleteListener {
                     Toast.makeText(requireContext(), "User deleted", Toast.LENGTH_SHORT).show()
+                    findNavController().popBackStack()
                     findNavController().navigate(R.id.signUpScreen)
                 }
             }
