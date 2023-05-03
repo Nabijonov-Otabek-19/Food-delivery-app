@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -29,12 +30,26 @@ class HomeScreen : Fragment(R.layout.home_screen) {
             recycler.layoutManager = LinearLayoutManager(requireContext())
             recycler.adapter = adapter
 
+            val credential = EmailAuthProvider.getCredential(user.email.toString(), "123456")
+
 
             btnLogout.setOnClickListener {
-                user.delete().addOnCompleteListener {
-                    Toast.makeText(requireContext(), "User deleted", Toast.LENGTH_SHORT).show()
-                    findNavController().popBackStack()
-                    findNavController().navigate(R.id.signUpScreen)
+                user.reauthenticate(credential).addOnCompleteListener {
+                    user.delete().addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            Toast.makeText(requireContext(), "User deleted", Toast.LENGTH_SHORT)
+                                .show()
+                            findNavController().popBackStack()
+                            findNavController().navigate(R.id.signUpScreen)
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                "${it.exception?.message}",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+                    }
                 }
             }
         }
