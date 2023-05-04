@@ -1,7 +1,6 @@
 package uz.gita.fooddeliveryapp_bek.data.common
 
-data class DrinkData(
+data class CategoryData(
     val title: String,
-    val description: String,
-    val image: String
+    var checked: Boolean = false
 )

@@ -10,9 +10,11 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/txtCategory"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:gravity="center"
         android:layout_height="wrap_content"
         android:text="Something"
+        android:textSize="16sp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

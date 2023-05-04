@@ -1,19 +1,61 @@
 package uz.gita.fooddeliveryapp_bek.presentation.ui.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import uz.gita.fooddeliveryapp_bek.R
+import uz.gita.fooddeliveryapp_bek.data.common.CategoryData
 import uz.gita.fooddeliveryapp_bek.databinding.ItemCategoryBinding
-import uz.gita.fooddeliveryapp_bek.databinding.ItemFoodBinding
 
 class CategoryAdapter : Adapter<CategoryAdapter.ItemHolder>() {
+
+    private var categoryList: List<CategoryData> = ArrayList()
+
+    private var clickListener: ((String) -> Unit)? = null
+
+    fun setClickListener(l: (String) -> Unit) {
+        clickListener = l
+    }
+
+    fun setData(l: List<CategoryData>) {
+        categoryList = l
+        notifyDataSetChanged()
+    }
 
     inner class ItemHolder(private val binding: ItemCategoryBinding) :
         ViewHolder(binding.root) {
 
-        fun bind() {
+        init {
+            binding.root.setOnClickListener {
 
+                categoryList.forEach { d ->
+                    d.checked = false
+                }
+
+                categoryList[adapterPosition].checked = true
+
+                notifyItemRangeChanged(0, categoryList.size)
+                clickListener?.invoke((categoryList[adapterPosition]).title)
+            }
+        }
+
+        fun bind() {
+            binding.txtCategory.text = categoryList[adapterPosition].title
+
+            if (categoryList[adapterPosition].checked) {
+                binding.root.background =
+                    ContextCompat.getDrawable(binding.root.context, R.drawable.category_bg)
+
+                binding.txtCategory.setTextColor(Color.WHITE)
+            } else {
+                binding.root.background =
+                    ContextCompat.getDrawable(binding.root.context, R.drawable.edittext_bg)
+
+                binding.txtCategory.setTextColor(Color.BLACK)
+            }
         }
     }
 
@@ -27,7 +69,7 @@ class CategoryAdapter : Adapter<CategoryAdapter.ItemHolder>() {
         )
     }
 
-    override fun getItemCount() = 7
+    override fun getItemCount() = categoryList.size
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         holder.bind()

@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="120dp"
-    android:elevation="12dp"
-    android:layout_marginVertical="1dp"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="4dp"
     android:background="@drawable/item_food_bg"
-    android:padding="4dp">
+    android:elevation="4dp"
+    android:padding="8dp">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/txtTitle"
@@ -14,9 +15,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
         android:layout_marginVertical="2dp"
-        android:text="Maxi Box Retro"
         android:ellipsize="end"
         android:maxLines="1"
+        android:text="Maxi Box Retro"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/txtInfo"
@@ -56,9 +57,9 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgIcon"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitXY"
         android:src="@drawable/lavash"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
