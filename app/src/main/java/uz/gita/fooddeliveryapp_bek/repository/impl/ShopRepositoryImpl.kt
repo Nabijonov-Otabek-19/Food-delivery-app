@@ -31,8 +31,7 @@ class ShopRepositoryImpl : ShopRepository {
         awaitClose()
     }
 
-    override fun getFoods()
-            : Flow<Result<List<FoodData>>> = callbackFlow {
+    override fun getFoods(): Flow<Result<List<FoodData>>> = callbackFlow {
 
         firestore.collection("foods").get()
             .addOnSuccessListener { query ->
@@ -78,8 +77,7 @@ class ShopRepositoryImpl : ShopRepository {
                     trySend(Result.failure(it))
                 }
 
-        }
-        else {
+        } else {
             firestore.collection("foods")
                 .whereEqualTo("category", categoryTitle).get()
                 .addOnSuccessListener { query ->
