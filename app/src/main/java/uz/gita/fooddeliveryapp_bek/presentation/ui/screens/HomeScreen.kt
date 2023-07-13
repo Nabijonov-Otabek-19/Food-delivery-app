@@ -33,6 +33,11 @@ class HomeScreen : Fragment(R.layout.home_screen) {
             categoryAdapter.setData(it)
         }
 
+        viewmodel.loadingData.observe(viewLifecycleOwner) {
+            val visibility = if (it) View.VISIBLE else View.GONE
+            binding.progressBar.visibility = visibility
+        }
+
         viewmodel.errorData.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
