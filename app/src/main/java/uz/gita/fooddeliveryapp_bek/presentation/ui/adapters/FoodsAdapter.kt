@@ -1,6 +1,5 @@
 package uz.gita.fooddeliveryapp_bek.presentation.ui.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
@@ -28,8 +27,6 @@ class FoodsAdapter : Adapter<FoodsAdapter.ItemHolder>() {
                 txtPrice.text = "${foodsList[adapterPosition].price} so'm"
 
                 val imgUrl = foodsList[adapterPosition].imgUrl
-
-                Log.d("AAA", imgUrl)
 
                 Glide.with(binding.root.context).load(imgUrl).into(imgIcon)
             }

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
@@ -51,6 +52,20 @@ class HomeScreen : Fragment(R.layout.home_screen) {
             recyclerCategory.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             recyclerCategory.adapter = categoryAdapter
+
+            recyclerFoods.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        // Get the first visible item position in the second RecyclerView
+                        val firstVisibleItemPosition =
+                            (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+
+                        // Scroll the first RecyclerView to the corresponding category item position
+                        recyclerCategory.scrollToPosition(firstVisibleItemPosition)
+                    }
+                }
+            })
 
 
             val credential = EmailAuthProvider.getCredential(user.email.toString(), "123456")
