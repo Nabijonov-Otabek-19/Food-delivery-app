@@ -11,18 +11,32 @@ class RoomRepositoryImpl @Inject constructor(
     private val dao: ProductDao
 ) : RoomRepository {
 
-    override fun checkProduct(productId: Int): Boolean = dao.checkProduct(productId)
+    override fun checkFavProduct(productId: Int): Boolean = dao.checkFavProduct(productId)
+    override fun checkCartProduct(productId: Int): Boolean = dao.checkCartProduct(productId)
 
-    override fun saveToDB(productData: ProductData) {
-        dao.add(productData.toEntity())
+    override fun saveToFav(productData: ProductData) {
+        dao.addFav(productData.toFavEntity())
     }
 
-    override fun removeFromDB(productData: ProductData) {
-        dao.delete(productData.toEntity())
+    override fun removeFromFav(productData: ProductData) {
+        dao.deleteFav(productData.toFavEntity())
+    }
+
+    override fun saveToCart(productData: ProductData) {
+        dao.addCart(productData.toCartEntity())
+    }
+
+    override fun removeFromCart(productData: ProductData) {
+        dao.deleteCart(productData.toCartEntity())
     }
 
     override fun getFavouriteProducts(): Flow<List<ProductData>> =
         dao.getFavouriteProducts().map { list ->
+            list.map { data -> data.toData() }
+        }
+
+    override fun getCartProducts(): Flow<List<ProductData>> =
+        dao.getCartProducts().map { list ->
             list.map { data -> data.toData() }
         }
 }

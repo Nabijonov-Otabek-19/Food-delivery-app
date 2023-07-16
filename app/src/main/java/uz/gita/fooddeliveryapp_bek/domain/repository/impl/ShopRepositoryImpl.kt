@@ -1,6 +1,9 @@
 package uz.gita.fooddeliveryapp_bek.domain.repository.impl
 
+import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.models.SlideModel
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -21,8 +24,7 @@ class ShopRepositoryImpl @Inject constructor() : ShopRepository {
             .addOnSuccessListener { query ->
                 val list = arrayListOf<CategoryData>()
                 query.forEach { categories ->
-                    val category = CategoryData(title = categories.get("title").toString())
-                    list.add(category)
+                    list.add(categories.toObject() as CategoryData)
                 }
                 trySend(Result.success(list))
             }
@@ -37,21 +39,27 @@ class ShopRepositoryImpl @Inject constructor() : ShopRepository {
             .addOnSuccessListener { query ->
                 val list = arrayListOf<ProductData>()
                 query.forEach { foods ->
-                    val food = ProductData(
-                        id = foods.get("id").toString().toInt(),
-                        title = foods.get("title").toString(),
-                        description = foods.get("description").toString(),
-                        imgUrl = foods.get("imgUrl").toString(),
-                        price = foods.get("price").toString().toInt(),
-                        category = foods.get("category").toString()
-                    )
-                    list.add(food)
+                    list.add(foods.toObject() as ProductData)
                 }
                 trySend(Result.success(list))
             }
             .addOnFailureListener {
                 trySend(Result.failure(it))
             }
+        awaitClose()
+    }
+
+    override fun getOffers(): Flow<Result<List<SlideModel>>> = callbackFlow {
+        firestore.collection("offers").get()
+            .addOnSuccessListener { query ->
+                val list = arrayListOf<SlideModel>()
+                query.forEach { offers ->
+                    val offer = offers.getString("imgUrl")
+                    list.add(SlideModel(offer, ScaleTypes.FIT))
+                }
+                trySend(Result.success(list))
+            }
+            .addOnFailureListener { trySend(Result.failure(it)) }
         awaitClose()
     }
 
@@ -63,14 +71,7 @@ class ShopRepositoryImpl @Inject constructor() : ShopRepository {
                 .addOnSuccessListener { query ->
                     val list = arrayListOf<ProductData>()
                     query.forEach { foods ->
-                        val food = ProductData(
-                            id = foods.get("id").toString().toInt(),
-                            title = foods.get("title").toString(),
-                            description = foods.get("description").toString(),
-                            imgUrl = foods.get("imgUrl").toString(),
-                            price = foods.get("price").toString().toInt(),
-                            category = foods.get("category").toString()
-                        )
+                        val food = foods.toObject<ProductData>()
                         list.add(food)
                     }
                     trySend(Result.success(list))
@@ -83,14 +84,7 @@ class ShopRepositoryImpl @Inject constructor() : ShopRepository {
                 .addOnSuccessListener { query ->
                     val list = arrayListOf<ProductData>()
                     query.forEach { foods ->
-                        val food = ProductData(
-                            id = foods.get("id").toString().toInt(),
-                            title = foods.get("title").toString(),
-                            description = foods.get("description").toString(),
-                            imgUrl = foods.get("imgUrl").toString(),
-                            price = foods.get("price").toString().toInt(),
-                            category = foods.get("category").toString()
-                        )
+                        val food = foods.toObject<ProductData>()
                         list.add(food)
                     }
                     trySend(Result.success(list))

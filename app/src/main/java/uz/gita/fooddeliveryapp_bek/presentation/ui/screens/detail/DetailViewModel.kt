@@ -4,7 +4,11 @@ import uz.gita.fooddeliveryapp_bek.data.common.ProductData
 
 interface DetailViewModel {
 
-    fun checkProduct(productId: Int): Boolean
-    fun saveToDB(productData: ProductData)
-    fun removeFromDB(productData: ProductData)
+    fun checkFavProduct(productId: Int): Boolean
+    fun saveToFav(productData: ProductData)
+    fun removeFromFav(productData: ProductData)
+
+    fun checkCartProduct(productId: Int): Boolean
+    fun saveToCart(productData: ProductData)
+    fun removeFromCart(productData: ProductData)
 }

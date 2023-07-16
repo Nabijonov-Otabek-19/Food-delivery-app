@@ -9,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.denzcoskun.imageslider.constants.ScaleTypes
-import com.denzcoskun.imageslider.models.SlideModel
 import dagger.hilt.android.AndroidEntryPoint
 import uz.gita.fooddeliveryapp_bek.R
 import uz.gita.fooddeliveryapp_bek.databinding.HomeScreenBinding
@@ -22,12 +21,6 @@ class HomeScreen : Fragment(R.layout.home_screen) {
 
     private val binding by viewBinding(HomeScreenBinding::bind)
     private val viewmodel by viewModels<HomeViewModelImpl>()
-
-    val imageList = listOf(
-        SlideModel(R.drawable.ic_home, ScaleTypes.FIT),
-        SlideModel(R.drawable.ic_delete, ScaleTypes.FIT),
-        SlideModel(R.drawable.ic_arrow_back, ScaleTypes.FIT)
-    )
 
     @Inject
     lateinit var productAdapter: ProductAdapter
@@ -65,9 +58,11 @@ class HomeScreen : Fragment(R.layout.home_screen) {
             findNavController().navigate(HomeScreenDirections.actionHomeScreenToDetailScreen(it))
         }
 
-        binding.apply {
+        viewmodel.offersData.observe(viewLifecycleOwner) {
+            binding.imageSlider.setImageList(it, ScaleTypes.FIT)
+        }
 
-            imageSlider.setImageList(imageList, ScaleTypes.FIT)
+        binding.apply {
 
             recyclerFoods.layoutManager = LinearLayoutManager(requireContext())
             recyclerFoods.adapter = productAdapter

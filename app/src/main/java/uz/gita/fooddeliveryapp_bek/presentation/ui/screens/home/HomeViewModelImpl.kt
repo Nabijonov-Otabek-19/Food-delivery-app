@@ -3,6 +3,7 @@ package uz.gita.fooddeliveryapp_bek.presentation.ui.screens.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.denzcoskun.imageslider.models.SlideModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.gita.fooddeliveryapp_bek.data.common.CategoryData
@@ -18,6 +19,7 @@ class HomeViewModelImpl : HomeViewModel, ViewModel() {
     override val loadingData = MutableLiveData<Boolean>()
     override val categoryData = MutableLiveData<List<CategoryData>>()
     override val foodsData = MutableLiveData<List<ProductData>>()
+    override val offersData = MutableLiveData<List<SlideModel>>()
 
     init {
         getAllData()
@@ -39,6 +41,11 @@ class HomeViewModelImpl : HomeViewModel, ViewModel() {
                 loadingData.value = false
                 errorData.value = it.message
             }
+        }.launchIn(viewModelScope)
+
+        shopRepository.getOffers().onEach { result ->
+            result.onSuccess { offersData.value = it }
+            result.onFailure { errorData.value = it.message }
         }.launchIn(viewModelScope)
     }
 

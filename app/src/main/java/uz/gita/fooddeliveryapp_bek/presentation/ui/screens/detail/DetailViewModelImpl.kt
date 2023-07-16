@@ -11,13 +11,25 @@ class DetailViewModelImpl @Inject constructor(
     private val roomRepository: RoomRepository
 ) : DetailViewModel, ViewModel() {
 
-    override fun checkProduct(productId: Int): Boolean = roomRepository.checkProduct(productId)
+    override fun checkFavProduct(productId: Int): Boolean =
+        roomRepository.checkFavProduct(productId)
 
-    override fun saveToDB(productData: ProductData) {
-        roomRepository.saveToDB(productData)
+    override fun saveToFav(productData: ProductData) {
+        roomRepository.saveToFav(productData)
     }
 
-    override fun removeFromDB(productData: ProductData) {
-        roomRepository.removeFromDB(productData)
+    override fun removeFromFav(productData: ProductData) {
+        roomRepository.removeFromFav(productData)
+    }
+
+    override fun checkCartProduct(productId: Int): Boolean =
+        roomRepository.checkCartProduct(productId)
+
+    override fun saveToCart(productData: ProductData) {
+        roomRepository.saveToCart(productData)
+    }
+
+    override fun removeFromCart(productData: ProductData) {
+        roomRepository.removeFromCart(productData)
     }
 }

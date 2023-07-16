@@ -5,5 +5,7 @@ import androidx.lifecycle.LiveData
 interface SignInViewModel {
 
     val errorData: LiveData<String>
+    val successData: LiveData<Unit>
+
     fun signIn(email: String, password: String)
 }

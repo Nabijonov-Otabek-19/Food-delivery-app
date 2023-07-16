@@ -32,27 +32,41 @@ class DetailScreen : Fragment(R.layout.detail_screen) {
             txtTitle.text = productData.title
             txtCategory.text = productData.category
             txtPrice.text = productData.price.toString()
+            txtDescription.text = productData.description
 
             Glide.with(requireContext()).load(productData.imgUrl).into(idImgProduct)
 
-            if (viewmodel.checkProduct(productData.id)) {
+            if (viewmodel.checkFavProduct(productData.id)) {
                 btnFavourite.setImageResource(R.drawable.ic_love_full)
             } else {
                 btnFavourite.setImageResource(R.drawable.ic_love)
             }
 
             btnFavourite.setOnClickListener {
-                if (viewmodel.checkProduct(productData.id)) {
-                    viewmodel.removeFromDB(productData)
+                if (viewmodel.checkFavProduct(productData.id)) {
+                    viewmodel.removeFromFav(productData)
                     btnFavourite.setImageResource(R.drawable.ic_love)
                 } else {
-                    viewmodel.saveToDB(productData)
+                    viewmodel.saveToFav(productData)
                     btnFavourite.setImageResource(R.drawable.ic_love_full)
                 }
             }
 
-            btnAdd2Cart.setOnClickListener {
+            if (viewmodel.checkCartProduct(productData.id)) {
+                btnAdd2Cart.text = "Remove"
+            } else {
+                btnAdd2Cart.text = "Add"
+            }
 
+            btnAdd2Cart.setOnClickListener {
+                productData.cart_count = 1
+                if (viewmodel.checkCartProduct(productData.id)) {
+                    viewmodel.removeFromCart(productData)
+                    btnAdd2Cart.text = "Add"
+                } else {
+                    viewmodel.saveToCart(productData)
+                    btnAdd2Cart.text = "Remove"
+                }
             }
         }
     }

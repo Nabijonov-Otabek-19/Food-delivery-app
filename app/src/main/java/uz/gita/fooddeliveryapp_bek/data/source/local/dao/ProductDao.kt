@@ -2,23 +2,33 @@ package uz.gita.fooddeliveryapp_bek.data.source.local.dao
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
-import uz.gita.fooddeliveryapp_bek.data.source.local.entity.ProductEntity
+import uz.gita.fooddeliveryapp_bek.data.source.local.entity.CartProductEntity
+import uz.gita.fooddeliveryapp_bek.data.source.local.entity.FavProductEntity
 
 @Dao
 interface ProductDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun add(productEntity: ProductEntity)
+    fun addFav(favProductEntity: FavProductEntity)
 
     @Delete
-    fun delete(productEntity: ProductEntity)
+    fun deleteFav(favProductEntity: FavProductEntity)
 
-    @Update
-    fun update(productEntity: ProductEntity)
+    @Query("Select * from favproducts")
+    fun getFavouriteProducts(): Flow<List<FavProductEntity>>
 
-    @Query("Select * from products")
-    fun getFavouriteProducts(): Flow<List<ProductEntity>>
+    @Query("Select exists (Select * from favproducts Where id =:productId)")
+    fun checkFavProduct(productId: Int): Boolean
 
-    @Query("Select exists (Select * from products Where id =:productId)")
-    fun checkProduct(productId: Int): Boolean
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun addCart(cartProductEntity: CartProductEntity)
+
+    @Delete
+    fun deleteCart(cartProductEntity: CartProductEntity)
+
+    @Query("Select * from cartproducts")
+    fun getCartProducts(): Flow<List<CartProductEntity>>
+
+    @Query("Select exists (Select * from cartproducts Where id =:productId)")
+    fun checkCartProduct(productId: Int): Boolean
 }

@@ -37,7 +37,18 @@ class FavouriteScreen : Fragment(R.layout.favourite_screen) {
         }
 
         viewmodel.productsData.observe(viewLifecycleOwner) {
-            adapter.setData(it)
+            if (it.isEmpty()) {
+                binding.apply {
+                    imgNoData.visibility = View.VISIBLE
+                    recyclerFavourites.visibility = View.GONE
+                }
+            } else {
+                binding.apply {
+                    imgNoData.visibility = View.GONE
+                    recyclerFavourites.visibility = View.VISIBLE
+                }
+                adapter.setData(it)
+            }
         }
 
         adapter.setClickListener {

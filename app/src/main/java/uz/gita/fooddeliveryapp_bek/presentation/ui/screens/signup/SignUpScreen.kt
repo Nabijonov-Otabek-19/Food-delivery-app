@@ -9,6 +9,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import uz.gita.fooddeliveryapp_bek.R
 import uz.gita.fooddeliveryapp_bek.databinding.SignupScreenBinding
+import uz.gita.fooddeliveryapp_bek.utils.logger
 import uz.gita.fooddeliveryapp_bek.utils.toast
 
 @AndroidEntryPoint
@@ -21,7 +22,13 @@ class SignUpScreen : Fragment(R.layout.signup_screen) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.errorData.observe(viewLifecycleOwner) {
-            requireContext().toast("Sign Up error = $it")
+            requireContext().toast(it)
+            logger("Sign Up error = $it")
+        }
+
+        viewModel.successData.observe(viewLifecycleOwner) {
+            findNavController().popBackStack()
+            findNavController().navigate(R.id.homeScreen)
         }
 
         binding.apply {
@@ -31,8 +38,6 @@ class SignUpScreen : Fragment(R.layout.signup_screen) {
                 val password = edtPassword.text.toString().trim()
                 if (email.isNotEmpty() && password.isNotEmpty()) {
                     viewModel.signUp(email, password)
-                    findNavController().popBackStack()
-                    findNavController().navigate(R.id.homeScreen)
                 } else {
                     requireContext().toast("Fill the form")
                 }

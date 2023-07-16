@@ -4,8 +4,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import uz.gita.fooddeliveryapp_bek.data.common.ProductData
 
-@Entity(tableName = "products")
-data class ProductEntity(
+@Entity(tableName = "favproducts")
+data class FavProductEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val title: String,
