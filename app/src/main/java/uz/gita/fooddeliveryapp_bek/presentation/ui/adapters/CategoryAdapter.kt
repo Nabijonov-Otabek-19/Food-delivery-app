@@ -9,8 +9,9 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import uz.gita.fooddeliveryapp_bek.R
 import uz.gita.fooddeliveryapp_bek.data.common.CategoryData
 import uz.gita.fooddeliveryapp_bek.databinding.ItemCategoryBinding
+import javax.inject.Inject
 
-class CategoryAdapter : Adapter<CategoryAdapter.ItemHolder>() {
+class CategoryAdapter @Inject constructor() : Adapter<CategoryAdapter.ItemHolder>() {
 
     private var categoryList: List<CategoryData> = ArrayList()
 

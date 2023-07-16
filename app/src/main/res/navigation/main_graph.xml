@@ -7,25 +7,49 @@
 
     <fragment
         android:id="@+id/homeScreen"
-        android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.HomeScreen"
+        android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.home.HomeScreen"
         android:label="HomeScreen"
         tools:layout="@layout/home_screen" />
 
     <fragment
         android:id="@+id/signUpScreen"
-        android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.SignUpScreen"
+        android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.signup.SignUpScreen"
         android:label="SignUpScreen"
         tools:layout="@layout/signup_screen" />
 
     <fragment
         android:id="@+id/signInScreen"
-        android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.SignInScreen"
+        android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.signin.SignInScreen"
         android:label="SignInScreen"
         tools:layout="@layout/signin_screen" />
 
     <fragment
-        tools:layout="@layout/splash_screen"
         android:id="@+id/splashScreen"
-        android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.SplashScreen"
-        android:label="SplashScreen" />
+        android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.splash.SplashScreen"
+        android:label="SplashScreen"
+        tools:layout="@layout/splash_screen" />
+
+    <fragment
+        android:id="@+id/cartScreen"
+        android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.cart.CartScreen"
+        android:label="CartScreen"
+        tools:layout="@layout/screen_cart" />
+
+    <fragment
+        android:id="@+id/profileScreen"
+        android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.profile.ProfileScreen"
+        android:label="ProfileScreen"
+        tools:layout="@layout/profile_screen" />
+
+    <fragment
+        android:id="@+id/detailScreen"
+        android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.detail.DetailScreen"
+        android:label="DetailScreen"
+        tools:layout="@layout/detail_screen" />
+
+    <fragment
+        android:id="@+id/favouriteScreen"
+        android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.favourite.FavouriteScreen"
+        android:label="FavouriteScreen"
+        tools:layout="@layout/favourite_screen" />
 </navigation>

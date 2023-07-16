@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import uz.gita.fooddeliveryapp_bek.data.common.FoodData
 import uz.gita.fooddeliveryapp_bek.databinding.ItemFoodBinding
+import javax.inject.Inject
 
-class FoodsAdapter : Adapter<FoodsAdapter.ItemHolder>() {
+class FoodsAdapter @Inject constructor() : Adapter<FoodsAdapter.ItemHolder>() {
 
     private var foodsList: List<FoodData> = ArrayList()
 

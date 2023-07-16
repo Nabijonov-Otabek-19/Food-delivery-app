@@ -1,4 +1,4 @@
-package uz.gita.fooddeliveryapp_bek.presentation.viewmodels
+package uz.gita.fooddeliveryapp_bek.presentation.ui.screens.home
 
 import androidx.lifecycle.LiveData
 import uz.gita.fooddeliveryapp_bek.data.common.CategoryData

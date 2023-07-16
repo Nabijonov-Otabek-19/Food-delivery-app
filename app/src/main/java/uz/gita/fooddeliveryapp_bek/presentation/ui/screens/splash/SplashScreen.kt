@@ -1,4 +1,4 @@
-package uz.gita.fooddeliveryapp_bek.presentation.ui.screens
+package uz.gita.fooddeliveryapp_bek.presentation.ui.screens.splash
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -27,6 +27,6 @@ class SplashScreen : Fragment(R.layout.splash_screen) {
                 findNavController().popBackStack()
                 findNavController().navigate(R.id.homeScreen)
             }
-        }, 1000)
+        }, 1500)
     }
 }

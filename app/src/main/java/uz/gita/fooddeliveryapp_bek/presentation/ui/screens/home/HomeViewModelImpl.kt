@@ -1,4 +1,4 @@
-package uz.gita.fooddeliveryapp_bek.presentation.viewmodels.impl
+package uz.gita.fooddeliveryapp_bek.presentation.ui.screens.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.gita.fooddeliveryapp_bek.data.common.CategoryData
 import uz.gita.fooddeliveryapp_bek.data.common.FoodData
-import uz.gita.fooddeliveryapp_bek.presentation.viewmodels.HomeViewModel
 import uz.gita.fooddeliveryapp_bek.domain.repository.ShopRepository
 import uz.gita.fooddeliveryapp_bek.domain.repository.impl.ShopRepositoryImpl
 

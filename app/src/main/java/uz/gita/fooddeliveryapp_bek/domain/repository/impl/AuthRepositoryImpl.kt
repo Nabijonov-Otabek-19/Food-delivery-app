@@ -8,8 +8,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import uz.gita.fooddeliveryapp_bek.domain.repository.AuthRepository
 import uz.gita.fooddeliveryapp_bek.utils.UserData
+import javax.inject.Inject
 
-class AuthRepositoryImpl : AuthRepository {
+class AuthRepositoryImpl @Inject constructor() : AuthRepository {
 
     private val auth: FirebaseAuth = Firebase.auth
 

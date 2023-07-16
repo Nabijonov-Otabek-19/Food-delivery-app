@@ -8,8 +8,9 @@ import kotlinx.coroutines.flow.callbackFlow
 import uz.gita.fooddeliveryapp_bek.data.common.CategoryData
 import uz.gita.fooddeliveryapp_bek.data.common.FoodData
 import uz.gita.fooddeliveryapp_bek.domain.repository.ShopRepository
+import javax.inject.Inject
 
-class ShopRepositoryImpl : ShopRepository {
+class ShopRepositoryImpl @Inject constructor() : ShopRepository {
 
     private val firestore = Firebase.firestore
 
