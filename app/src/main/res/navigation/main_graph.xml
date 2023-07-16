@@ -9,7 +9,11 @@
         android:id="@+id/homeScreen"
         android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.home.HomeScreen"
         android:label="HomeScreen"
-        tools:layout="@layout/home_screen" />
+        tools:layout="@layout/home_screen" >
+        <action
+            android:id="@+id/action_homeScreen_to_detailScreen"
+            app:destination="@id/detailScreen" />
+    </fragment>
 
     <fragment
         android:id="@+id/signUpScreen"
@@ -45,11 +49,19 @@
         android:id="@+id/detailScreen"
         android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.detail.DetailScreen"
         android:label="DetailScreen"
-        tools:layout="@layout/detail_screen" />
+        tools:layout="@layout/detail_screen" >
+        <argument
+            android:name="productData"
+            app:argType="uz.gita.fooddeliveryapp_bek.data.common.ProductData" />
+    </fragment>
 
     <fragment
         android:id="@+id/favouriteScreen"
         android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.favourite.FavouriteScreen"
         android:label="FavouriteScreen"
-        tools:layout="@layout/favourite_screen" />
+        tools:layout="@layout/favourite_screen" >
+        <action
+            android:id="@+id/action_favouriteScreen_to_detailScreen"
+            app:destination="@id/detailScreen" />
+    </fragment>
 </navigation>

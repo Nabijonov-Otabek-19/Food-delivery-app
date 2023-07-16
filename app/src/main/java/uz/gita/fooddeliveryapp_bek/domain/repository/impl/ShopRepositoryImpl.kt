@@ -6,7 +6,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import uz.gita.fooddeliveryapp_bek.data.common.CategoryData
-import uz.gita.fooddeliveryapp_bek.data.common.FoodData
+import uz.gita.fooddeliveryapp_bek.data.common.ProductData
 import uz.gita.fooddeliveryapp_bek.domain.repository.ShopRepository
 import javax.inject.Inject
 
@@ -32,13 +32,13 @@ class ShopRepositoryImpl @Inject constructor() : ShopRepository {
         awaitClose()
     }
 
-    override fun getFoods(): Flow<Result<List<FoodData>>> = callbackFlow {
-
+    override fun getFoods(): Flow<Result<List<ProductData>>> = callbackFlow {
         firestore.collection("foods").get()
             .addOnSuccessListener { query ->
-                val list = arrayListOf<FoodData>()
+                val list = arrayListOf<ProductData>()
                 query.forEach { foods ->
-                    val food = FoodData(
+                    val food = ProductData(
+                        id = foods.get("id").toString().toInt(),
                         title = foods.get("title").toString(),
                         description = foods.get("description").toString(),
                         imgUrl = foods.get("imgUrl").toString(),
@@ -56,14 +56,15 @@ class ShopRepositoryImpl @Inject constructor() : ShopRepository {
     }
 
     override fun getProductsByCategory(categoryTitle: String)
-            : Flow<Result<List<FoodData>>> = callbackFlow {
+            : Flow<Result<List<ProductData>>> = callbackFlow {
 
         if (categoryTitle == "All") {
             firestore.collection("foods").get()
                 .addOnSuccessListener { query ->
-                    val list = arrayListOf<FoodData>()
+                    val list = arrayListOf<ProductData>()
                     query.forEach { foods ->
-                        val food = FoodData(
+                        val food = ProductData(
+                            id = foods.get("id").toString().toInt(),
                             title = foods.get("title").toString(),
                             description = foods.get("description").toString(),
                             imgUrl = foods.get("imgUrl").toString(),
@@ -74,17 +75,16 @@ class ShopRepositoryImpl @Inject constructor() : ShopRepository {
                     }
                     trySend(Result.success(list))
                 }
-                .addOnFailureListener {
-                    trySend(Result.failure(it))
-                }
+                .addOnFailureListener { trySend(Result.failure(it)) }
 
         } else {
             firestore.collection("foods")
                 .whereEqualTo("category", categoryTitle).get()
                 .addOnSuccessListener { query ->
-                    val list = arrayListOf<FoodData>()
+                    val list = arrayListOf<ProductData>()
                     query.forEach { foods ->
-                        val food = FoodData(
+                        val food = ProductData(
+                            id = foods.get("id").toString().toInt(),
                             title = foods.get("title").toString(),
                             description = foods.get("description").toString(),
                             imgUrl = foods.get("imgUrl").toString(),
@@ -95,9 +95,7 @@ class ShopRepositoryImpl @Inject constructor() : ShopRepository {
                     }
                     trySend(Result.success(list))
                 }
-                .addOnFailureListener {
-                    trySend(Result.failure(it))
-                }
+                .addOnFailureListener { trySend(Result.failure(it)) }
         }
 
         awaitClose()

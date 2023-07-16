@@ -5,21 +5,33 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
-import uz.gita.fooddeliveryapp_bek.data.common.FoodData
+import uz.gita.fooddeliveryapp_bek.data.common.ProductData
 import uz.gita.fooddeliveryapp_bek.databinding.ItemFoodBinding
 import javax.inject.Inject
 
-class FoodsAdapter @Inject constructor() : Adapter<FoodsAdapter.ItemHolder>() {
+class ProductAdapter @Inject constructor() : Adapter<ProductAdapter.ItemHolder>() {
 
-    private var foodsList: List<FoodData> = ArrayList()
+    private var foodsList: List<ProductData> = ArrayList()
 
-    fun setData(l: List<FoodData>){
+    fun setData(l: List<ProductData>) {
         foodsList = l
         notifyDataSetChanged()
     }
 
+    private var clickListener: ((ProductData) -> Unit)? = null
+
+    fun setClickListener(l: (ProductData) -> Unit) {
+        clickListener = l
+    }
+
     inner class ItemHolder(private val binding: ItemFoodBinding) :
         ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                clickListener?.invoke(foodsList[adapterPosition])
+            }
+        }
 
         fun bind() {
             binding.apply {

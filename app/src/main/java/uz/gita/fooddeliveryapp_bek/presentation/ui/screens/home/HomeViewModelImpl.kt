@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.gita.fooddeliveryapp_bek.data.common.CategoryData
-import uz.gita.fooddeliveryapp_bek.data.common.FoodData
+import uz.gita.fooddeliveryapp_bek.data.common.ProductData
 import uz.gita.fooddeliveryapp_bek.domain.repository.ShopRepository
 import uz.gita.fooddeliveryapp_bek.domain.repository.impl.ShopRepositoryImpl
 
@@ -17,7 +17,7 @@ class HomeViewModelImpl : HomeViewModel, ViewModel() {
     override val errorData = MutableLiveData<String>()
     override val loadingData = MutableLiveData<Boolean>()
     override val categoryData = MutableLiveData<List<CategoryData>>()
-    override val foodsData = MutableLiveData<List<FoodData>>()
+    override val foodsData = MutableLiveData<List<ProductData>>()
 
     init {
         getAllData()

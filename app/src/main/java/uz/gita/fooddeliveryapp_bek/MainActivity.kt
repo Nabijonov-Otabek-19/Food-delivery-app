@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             if (destination.id == R.id.splashScreen || destination.id == R.id.signInScreen
-                || destination.id == R.id.signUpScreen
+                || destination.id == R.id.signUpScreen || destination.id == R.id.detailScreen
             ) {
                 binding.bottomNavigationView.visibility = View.GONE
             } else {

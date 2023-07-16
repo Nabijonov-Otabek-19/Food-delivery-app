@@ -63,7 +63,8 @@ dependencies {
     // ViewBinding
     implementation 'com.github.kirich1409:viewbindingpropertydelegate-full:1.5.9'
 
-    // Coroutines
+    // Coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2'
 
     // ViewModel and LiveData
@@ -80,6 +81,11 @@ dependencies {
     // Dagger Hilt
     implementation "com.google.dagger:hilt-android:2.44.2"
     kapt "com.google.dagger:hilt-compiler:2.44.2"
+
+    // Room
+    implementation 'androidx.room:room-runtime:2.5.2'
+    implementation 'androidx.room:room-ktx:2.5.2'
+    kapt 'androidx.room:room-compiler:2.5.2'
 
     // Fragment
     implementation 'androidx.fragment:fragment-ktx:1.6.0'

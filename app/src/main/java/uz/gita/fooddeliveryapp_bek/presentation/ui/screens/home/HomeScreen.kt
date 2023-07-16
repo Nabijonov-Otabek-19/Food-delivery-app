@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.denzcoskun.imageslider.constants.ScaleTypes
@@ -13,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import uz.gita.fooddeliveryapp_bek.R
 import uz.gita.fooddeliveryapp_bek.databinding.HomeScreenBinding
 import uz.gita.fooddeliveryapp_bek.presentation.ui.adapters.CategoryAdapter
-import uz.gita.fooddeliveryapp_bek.presentation.ui.adapters.FoodsAdapter
+import uz.gita.fooddeliveryapp_bek.presentation.ui.adapters.ProductAdapter
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -29,7 +30,7 @@ class HomeScreen : Fragment(R.layout.home_screen) {
     )
 
     @Inject
-    lateinit var foodsAdapter: FoodsAdapter
+    lateinit var productAdapter: ProductAdapter
 
     @Inject
     lateinit var categoryAdapter: CategoryAdapter
@@ -53,11 +54,15 @@ class HomeScreen : Fragment(R.layout.home_screen) {
         }
 
         viewmodel.foodsData.observe(viewLifecycleOwner) {
-            foodsAdapter.setData(it)
+            productAdapter.setData(it)
         }
 
         categoryAdapter.setClickListener {
             viewmodel.getFoodsByCategory(it)
+        }
+
+        productAdapter.setClickListener {
+            findNavController().navigate(HomeScreenDirections.actionHomeScreenToDetailScreen(it))
         }
 
         binding.apply {
@@ -65,7 +70,7 @@ class HomeScreen : Fragment(R.layout.home_screen) {
             imageSlider.setImageList(imageList, ScaleTypes.FIT)
 
             recyclerFoods.layoutManager = LinearLayoutManager(requireContext())
-            recyclerFoods.adapter = foodsAdapter
+            recyclerFoods.adapter = productAdapter
 
             recyclerCategory.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
