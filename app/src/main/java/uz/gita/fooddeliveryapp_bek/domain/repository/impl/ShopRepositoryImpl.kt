@@ -1,4 +1,4 @@
-package uz.gita.fooddeliveryapp_bek.repository.impl
+package uz.gita.fooddeliveryapp_bek.domain.repository.impl
 
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import uz.gita.fooddeliveryapp_bek.data.common.CategoryData
 import uz.gita.fooddeliveryapp_bek.data.common.FoodData
-import uz.gita.fooddeliveryapp_bek.repository.ShopRepository
+import uz.gita.fooddeliveryapp_bek.domain.repository.ShopRepository
 
 class ShopRepositoryImpl : ShopRepository {
 

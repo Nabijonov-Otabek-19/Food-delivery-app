@@ -1,4 +1,4 @@
-package uz.gita.fooddeliveryapp_bek.repository
+package uz.gita.fooddeliveryapp_bek.domain.repository
 
 import kotlinx.coroutines.flow.Flow
 import uz.gita.fooddeliveryapp_bek.data.common.CategoryData

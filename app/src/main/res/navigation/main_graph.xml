@@ -24,6 +24,7 @@
         tools:layout="@layout/signin_screen" />
 
     <fragment
+        tools:layout="@layout/splash_screen"
         android:id="@+id/splashScreen"
         android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.SplashScreen"
         android:label="SplashScreen" />

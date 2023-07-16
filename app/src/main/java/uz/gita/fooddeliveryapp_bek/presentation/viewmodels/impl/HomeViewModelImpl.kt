@@ -8,8 +8,8 @@ import kotlinx.coroutines.flow.onEach
 import uz.gita.fooddeliveryapp_bek.data.common.CategoryData
 import uz.gita.fooddeliveryapp_bek.data.common.FoodData
 import uz.gita.fooddeliveryapp_bek.presentation.viewmodels.HomeViewModel
-import uz.gita.fooddeliveryapp_bek.repository.ShopRepository
-import uz.gita.fooddeliveryapp_bek.repository.impl.ShopRepositoryImpl
+import uz.gita.fooddeliveryapp_bek.domain.repository.ShopRepository
+import uz.gita.fooddeliveryapp_bek.domain.repository.impl.ShopRepositoryImpl
 
 class HomeViewModelImpl : HomeViewModel, ViewModel() {
 
