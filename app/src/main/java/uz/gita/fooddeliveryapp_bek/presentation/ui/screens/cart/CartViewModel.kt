@@ -8,7 +8,10 @@ interface CartViewModel {
     val productsData: LiveData<List<ProductData>>
     val errorData: LiveData<String>
     val loadingData: LiveData<Boolean>
+    val totalPriceData: LiveData<Long>
 
     fun getCartProducts()
+    fun getTotalPrice()
     fun removeFromCart(productData: ProductData)
+    fun updateCart(productData: ProductData)
 }

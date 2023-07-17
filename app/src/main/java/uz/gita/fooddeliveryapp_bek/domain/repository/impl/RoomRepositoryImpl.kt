@@ -11,6 +11,12 @@ class RoomRepositoryImpl @Inject constructor(
     private val dao: ProductDao
 ) : RoomRepository {
 
+    override fun updateCartProduct(productData: ProductData) {
+        dao.updateCart(productData.toCartEntity())
+    }
+
+    override fun getTotalPrice(): Long = dao.getTotalSum()
+
     override fun checkFavProduct(productId: Int): Boolean = dao.checkFavProduct(productId)
     override fun checkCartProduct(productId: Int): Boolean = dao.checkCartProduct(productId)
 

@@ -18,6 +18,13 @@ class CartViewModelImpl @Inject constructor(
     override val productsData = MutableLiveData<List<ProductData>>()
     override val errorData = MutableLiveData<String>()
     override val loadingData = MutableLiveData<Boolean>()
+    override val totalPriceData = MutableLiveData<Long>()
+
+
+    init {
+        getTotalPrice()
+        getCartProducts()
+    }
 
     override fun getCartProducts() {
         loadingData.value = true
@@ -27,7 +34,15 @@ class CartViewModelImpl @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
+    override fun getTotalPrice() {
+        totalPriceData.value = roomRepository.getTotalPrice()
+    }
+
     override fun removeFromCart(productData: ProductData) {
         roomRepository.removeFromCart(productData)
+    }
+
+    override fun updateCart(productData: ProductData) {
+        roomRepository.updateCartProduct(productData)
     }
 }

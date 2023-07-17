@@ -17,10 +17,20 @@ class CartAdapter @Inject constructor() : RecyclerView.Adapter<CartAdapter.ItemH
         notifyDataSetChanged()
     }
 
-    private var clickListener: ((ProductData) -> Unit)? = null
+    private var removeClickListener: ((ProductData) -> Unit)? = null
+    private var plusClickListener: ((ProductData) -> Unit)? = null
+    private var minusClickListener: ((ProductData) -> Unit)? = null
 
-    fun setClickListener(l: (ProductData) -> Unit) {
-        clickListener = l
+    fun setRemoveClickListener(l: (ProductData) -> Unit) {
+        removeClickListener = l
+    }
+
+    fun setPlusClickListener(l: (ProductData) -> Unit) {
+        plusClickListener = l
+    }
+
+    fun setMinusClickListener(l: (ProductData) -> Unit) {
+        minusClickListener = l
     }
 
     inner class ItemHolder(private val binding: CartItemBinding) :
@@ -28,7 +38,7 @@ class CartAdapter @Inject constructor() : RecyclerView.Adapter<CartAdapter.ItemH
 
         init {
             binding.btnRemove.setOnClickListener {
-                clickListener?.invoke(productList[adapterPosition])
+                removeClickListener?.invoke(productList[adapterPosition])
                 notifyItemChanged(adapterPosition)
             }
         }
@@ -36,7 +46,7 @@ class CartAdapter @Inject constructor() : RecyclerView.Adapter<CartAdapter.ItemH
         fun bind() {
             binding.apply {
                 val data = productList[adapterPosition]
-                txtPrice.text = (data.price * data.cart_count).toString()
+                txtPrice.text = "${data.price * data.cart_count} sum"
                 txtTitle.text = data.title
                 txtCount.text = data.cart_count.toString()
                 Glide.with(binding.root.context).load(data.imgUrl).into(imgProduct)
@@ -44,12 +54,14 @@ class CartAdapter @Inject constructor() : RecyclerView.Adapter<CartAdapter.ItemH
                 btnPlus.setOnClickListener {
                     data.cart_count++
                     notifyItemChanged(adapterPosition)
+                    plusClickListener?.invoke(data)
                 }
 
                 btnMinus.setOnClickListener {
                     if (data.cart_count - 1 != 0) {
                         data.cart_count--
                         notifyItemChanged(adapterPosition)
+                        minusClickListener?.invoke(data)
                     }
                 }
             }

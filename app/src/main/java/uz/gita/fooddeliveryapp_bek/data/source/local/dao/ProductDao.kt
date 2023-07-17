@@ -26,9 +26,15 @@ interface ProductDao {
     @Delete
     fun deleteCart(cartProductEntity: CartProductEntity)
 
+    @Update
+    fun updateCart(cartProductEntity: CartProductEntity)
+
     @Query("Select * from cartproducts")
     fun getCartProducts(): Flow<List<CartProductEntity>>
 
     @Query("Select exists (Select * from cartproducts Where id =:productId)")
     fun checkCartProduct(productId: Int): Boolean
+
+    @Query("SELECT SUM(price * cart_count) as totalSum FROM cartproducts")
+    fun getTotalSum(): Long
 }

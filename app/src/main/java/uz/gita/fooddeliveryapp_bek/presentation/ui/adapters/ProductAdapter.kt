@@ -37,7 +37,7 @@ class ProductAdapter @Inject constructor() : Adapter<ProductAdapter.ItemHolder>(
             binding.apply {
                 txtTitle.text = foodsList[adapterPosition].title
                 txtInfo.text = foodsList[adapterPosition].description
-                txtPrice.text = "${foodsList[adapterPosition].price} so'm"
+                txtPrice.text = "${foodsList[adapterPosition].price} sum"
 
                 val imgUrl = foodsList[adapterPosition].imgUrl
 

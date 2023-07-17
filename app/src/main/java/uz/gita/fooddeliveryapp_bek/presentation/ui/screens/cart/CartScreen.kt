@@ -25,8 +25,6 @@ class CartScreen : Fragment(R.layout.screen_cart) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getCartProducts()
-
         viewModel.errorData.observe(viewLifecycleOwner) {
             logger("CartScreen error = $it")
         }
@@ -35,25 +33,42 @@ class CartScreen : Fragment(R.layout.screen_cart) {
             binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
         }
 
+        viewModel.totalPriceData.observe(viewLifecycleOwner) {
+            binding.txtTotal.text = "$it sum"
+        }
+
         viewModel.productsData.observe(viewLifecycleOwner) {
             if (it.isEmpty()) {
                 binding.apply {
                     imgNoData.visibility = View.VISIBLE
                     recyclerCart.visibility = View.GONE
-                    btnOrder.visibility = View.GONE
+                    container.visibility = View.GONE
                 }
             } else {
                 binding.apply {
                     imgNoData.visibility = View.GONE
                     recyclerCart.visibility = View.VISIBLE
-                    btnOrder.visibility = View.VISIBLE
+                    container.visibility = View.VISIBLE
                 }
                 adapter.setData(it)
             }
         }
 
-        adapter.setClickListener {
-            viewModel.removeFromCart(it)
+        adapter.apply {
+            setMinusClickListener {
+                viewModel.updateCart(it)
+                viewModel.getTotalPrice()
+            }
+
+            setPlusClickListener {
+                viewModel.updateCart(it)
+                viewModel.getTotalPrice()
+            }
+
+            setRemoveClickListener {
+                viewModel.removeFromCart(it)
+                viewModel.getTotalPrice()
+            }
         }
 
         binding.apply {

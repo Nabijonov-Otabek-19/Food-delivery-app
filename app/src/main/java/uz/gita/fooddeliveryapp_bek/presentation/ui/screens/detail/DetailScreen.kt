@@ -37,18 +37,18 @@ class DetailScreen : Fragment(R.layout.detail_screen) {
             Glide.with(requireContext()).load(productData.imgUrl).into(idImgProduct)
 
             if (viewmodel.checkFavProduct(productData.id)) {
-                btnFavourite.setImageResource(R.drawable.ic_love_full)
+                imgFavourite.setImageResource(R.drawable.ic_love_full)
             } else {
-                btnFavourite.setImageResource(R.drawable.ic_love)
+                imgFavourite.setImageResource(R.drawable.ic_love)
             }
 
             btnFavourite.setOnClickListener {
                 if (viewmodel.checkFavProduct(productData.id)) {
                     viewmodel.removeFromFav(productData)
-                    btnFavourite.setImageResource(R.drawable.ic_love)
+                    imgFavourite.setImageResource(R.drawable.ic_love)
                 } else {
                     viewmodel.saveToFav(productData)
-                    btnFavourite.setImageResource(R.drawable.ic_love_full)
+                    imgFavourite.setImageResource(R.drawable.ic_love_full)
                 }
             }
 

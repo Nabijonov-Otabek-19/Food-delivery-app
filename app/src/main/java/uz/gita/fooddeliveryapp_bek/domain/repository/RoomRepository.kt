@@ -5,6 +5,9 @@ import uz.gita.fooddeliveryapp_bek.data.common.ProductData
 
 interface RoomRepository {
 
+    fun updateCartProduct(productData: ProductData)
+    fun getTotalPrice(): Long
+
     fun checkFavProduct(productId: Int): Boolean
     fun checkCartProduct(productId: Int): Boolean
 
