@@ -10,4 +10,5 @@
     <color name="light_gray">#323232</color>
     <color name="light_blue">#DDF0FF</color>
     <color name="red">#E91E63</color>
+    <color name="colorBadge">#F44336</color>
 </resources>
