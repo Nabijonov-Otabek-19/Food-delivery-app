@@ -9,15 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import uz.gita.fooddeliveryapp_bek.R
-import uz.gita.fooddeliveryapp_bek.databinding.FavouriteScreenBinding
+import uz.gita.fooddeliveryapp_bek.databinding.ScreenFavouriteBinding
 import uz.gita.fooddeliveryapp_bek.presentation.ui.adapters.ProductAdapter
 import uz.gita.fooddeliveryapp_bek.utils.toast
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class FavouriteScreen : Fragment(R.layout.favourite_screen) {
+class FavouriteScreen : Fragment(R.layout.screen_favourite) {
 
-    private val binding by viewBinding(FavouriteScreenBinding::bind)
+    private val binding by viewBinding(ScreenFavouriteBinding::bind)
     private val viewmodel by viewModels<FavouriteViewModelImpl>()
 
     @Inject

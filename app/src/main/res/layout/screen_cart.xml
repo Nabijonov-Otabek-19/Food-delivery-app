@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue">
+    android:background="@color/background">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/appBar"
@@ -37,7 +37,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appBar"
         app:layout_constraintVertical_weight="1"
-        tools:listitem="@layout/cart_item" />
+        tools:listitem="@layout/item_cart" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/container"

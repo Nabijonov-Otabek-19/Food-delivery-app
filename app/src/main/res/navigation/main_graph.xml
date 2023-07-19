@@ -9,7 +9,7 @@
         android:id="@+id/homeScreen"
         android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.home.HomeScreen"
         android:label="HomeScreen"
-        tools:layout="@layout/home_screen" >
+        tools:layout="@layout/screen_home" >
         <action
             android:id="@+id/action_homeScreen_to_detailScreen"
             app:destination="@id/detailScreen" />
@@ -19,19 +19,19 @@
         android:id="@+id/signUpScreen"
         android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.signup.SignUpScreen"
         android:label="SignUpScreen"
-        tools:layout="@layout/signup_screen" />
+        tools:layout="@layout/screen_signup" />
 
     <fragment
         android:id="@+id/signInScreen"
         android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.signin.SignInScreen"
         android:label="SignInScreen"
-        tools:layout="@layout/signin_screen" />
+        tools:layout="@layout/screen_signin" />
 
     <fragment
         android:id="@+id/splashScreen"
         android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.splash.SplashScreen"
         android:label="SplashScreen"
-        tools:layout="@layout/splash_screen" />
+        tools:layout="@layout/screen_splash" />
 
     <fragment
         android:id="@+id/cartScreen"
@@ -43,13 +43,13 @@
         android:id="@+id/profileScreen"
         android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.profile.ProfileScreen"
         android:label="ProfileScreen"
-        tools:layout="@layout/profile_screen" />
+        tools:layout="@layout/screen_profile" />
 
     <fragment
         android:id="@+id/detailScreen"
         android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.detail.DetailScreen"
         android:label="DetailScreen"
-        tools:layout="@layout/detail_screen" >
+        tools:layout="@layout/screen_detail" >
         <argument
             android:name="productData"
             app:argType="uz.gita.fooddeliveryapp_bek.data.common.ProductData" />
@@ -59,7 +59,7 @@
         android:id="@+id/favouriteScreen"
         android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.favourite.FavouriteScreen"
         android:label="FavouriteScreen"
-        tools:layout="@layout/favourite_screen" >
+        tools:layout="@layout/screen_favourite" >
         <action
             android:id="@+id/action_favouriteScreen_to_detailScreen"
             app:destination="@id/detailScreen" />

@@ -12,7 +12,7 @@ import com.google.firebase.ktx.Firebase
 import uz.gita.fooddeliveryapp_bek.R
 
 @SuppressLint("CustomSplashScreen")
-class SplashScreen : Fragment(R.layout.splash_screen) {
+class SplashScreen : Fragment(R.layout.screen_splash) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

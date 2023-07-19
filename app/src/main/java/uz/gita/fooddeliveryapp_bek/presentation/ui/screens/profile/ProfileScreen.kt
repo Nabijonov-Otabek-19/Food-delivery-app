@@ -7,7 +7,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import uz.gita.fooddeliveryapp_bek.R
 
 @AndroidEntryPoint
-class ProfileScreen : Fragment(R.layout.profile_screen) {
+class ProfileScreen : Fragment(R.layout.screen_profile) {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

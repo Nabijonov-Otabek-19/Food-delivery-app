@@ -10,12 +10,12 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import uz.gita.fooddeliveryapp_bek.R
-import uz.gita.fooddeliveryapp_bek.databinding.DetailScreenBinding
+import uz.gita.fooddeliveryapp_bek.databinding.ScreenDetailBinding
 
 @AndroidEntryPoint
-class DetailScreen : Fragment(R.layout.detail_screen) {
+class DetailScreen : Fragment(R.layout.screen_detail) {
 
-    private val binding by viewBinding(DetailScreenBinding::bind)
+    private val binding by viewBinding(ScreenDetailBinding::bind)
     private val viewmodel by viewModels<DetailViewModelImpl>()
     private val args by navArgs<DetailScreenArgs>()
 

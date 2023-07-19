@@ -8,14 +8,14 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import uz.gita.fooddeliveryapp_bek.R
-import uz.gita.fooddeliveryapp_bek.databinding.SigninScreenBinding
+import uz.gita.fooddeliveryapp_bek.databinding.ScreenSigninBinding
 import uz.gita.fooddeliveryapp_bek.utils.logger
 import uz.gita.fooddeliveryapp_bek.utils.toast
 
 @AndroidEntryPoint
-class SignInScreen : Fragment(R.layout.signin_screen) {
+class SignInScreen : Fragment(R.layout.screen_signin) {
 
-    private val binding by viewBinding(SigninScreenBinding::bind)
+    private val binding by viewBinding(ScreenSigninBinding::bind)
     private val viewModel by viewModels<SignInViewModelImpl>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

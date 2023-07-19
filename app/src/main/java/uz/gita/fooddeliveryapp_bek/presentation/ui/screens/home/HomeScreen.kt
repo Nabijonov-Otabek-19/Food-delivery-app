@@ -6,20 +6,25 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import dagger.hilt.android.AndroidEntryPoint
 import uz.gita.fooddeliveryapp_bek.R
-import uz.gita.fooddeliveryapp_bek.databinding.HomeScreenBinding
+import uz.gita.fooddeliveryapp_bek.databinding.ScreenHomeBinding
 import uz.gita.fooddeliveryapp_bek.presentation.ui.adapters.CategoryAdapter
+import uz.gita.fooddeliveryapp_bek.presentation.ui.adapters.MenuAdapter
 import uz.gita.fooddeliveryapp_bek.presentation.ui.adapters.ProductAdapter
+import uz.gita.fooddeliveryapp_bek.utils.categories
+import uz.gita.fooddeliveryapp_bek.utils.toast
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeScreen : Fragment(R.layout.home_screen) {
+class HomeScreen : Fragment(R.layout.screen_home) {
 
-    private val binding by viewBinding(HomeScreenBinding::bind)
+    private val binding by viewBinding(ScreenHomeBinding::bind)
     private val viewmodel by viewModels<HomeViewModelImpl>()
 
     @Inject
@@ -28,13 +33,17 @@ class HomeScreen : Fragment(R.layout.home_screen) {
     @Inject
     lateinit var categoryAdapter: CategoryAdapter
 
+    @Inject
+    lateinit var menuAdapter: MenuAdapter
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         //val user = FirebaseAuth.getInstance().currentUser!!
 
         viewmodel.categoryData.observe(viewLifecycleOwner) {
-            categoryAdapter.setData(it)
+            //categoryAdapter.setData(it)
+            menuAdapter.setData(categories)
         }
 
         viewmodel.loadingData.observe(viewLifecycleOwner) {
@@ -50,6 +59,10 @@ class HomeScreen : Fragment(R.layout.home_screen) {
             productAdapter.setData(it)
         }
 
+        viewmodel.offersData.observe(viewLifecycleOwner) {
+            binding.imageSlider.setImageList(it, ScaleTypes.FIT)
+        }
+
         categoryAdapter.setClickListener {
             viewmodel.getFoodsByCategory(it)
         }
@@ -58,9 +71,10 @@ class HomeScreen : Fragment(R.layout.home_screen) {
             findNavController().navigate(HomeScreenDirections.actionHomeScreenToDetailScreen(it))
         }
 
-        viewmodel.offersData.observe(viewLifecycleOwner) {
-            binding.imageSlider.setImageList(it, ScaleTypes.FIT)
+        menuAdapter.setOnItemClickListener {
+            requireContext().toast(it.title)
         }
+
 
         binding.apply {
 
@@ -68,8 +82,12 @@ class HomeScreen : Fragment(R.layout.home_screen) {
             recyclerFoods.adapter = productAdapter
 
             recyclerCategory.layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            recyclerCategory.adapter = categoryAdapter
+                GridLayoutManager(requireContext(), 4, RecyclerView.VERTICAL, false)
+            recyclerCategory.adapter = menuAdapter
+
+            /* recyclerCategory.layoutManager =
+                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+             recyclerCategory.adapter = categoryAdapter*/
 
             /* recyclerFoods.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                  override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {

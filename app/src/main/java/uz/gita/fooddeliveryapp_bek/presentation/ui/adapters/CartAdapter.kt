@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import uz.gita.fooddeliveryapp_bek.data.common.ProductData
-import uz.gita.fooddeliveryapp_bek.databinding.CartItemBinding
+import uz.gita.fooddeliveryapp_bek.databinding.ItemCartBinding
 import javax.inject.Inject
 
 class CartAdapter @Inject constructor() : RecyclerView.Adapter<CartAdapter.ItemHolder>() {
@@ -33,7 +33,7 @@ class CartAdapter @Inject constructor() : RecyclerView.Adapter<CartAdapter.ItemH
         minusClickListener = l
     }
 
-    inner class ItemHolder(private val binding: CartItemBinding) :
+    inner class ItemHolder(private val binding: ItemCartBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
@@ -70,7 +70,7 @@ class CartAdapter @Inject constructor() : RecyclerView.Adapter<CartAdapter.ItemH
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         return ItemHolder(
-            CartItemBinding.inflate(
+            ItemCartBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
