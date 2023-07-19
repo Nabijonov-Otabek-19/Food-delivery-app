@@ -6,7 +6,7 @@
     <color name="colorBadge">#F44336</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="gray">#E6E6E6</color>
+    <color name="gray">#6F6F6F</color>
 
     <color name="background">#F4F7FE</color>
 
@@ -21,4 +21,7 @@
     <color name="red">#FB5756</color>
     <color name="pink">#A25DFD</color>
     <color name="orange">#FB7151</color>
+
+    <color name="status_bar_text_color">#FF000000</color>
+
 </resources>

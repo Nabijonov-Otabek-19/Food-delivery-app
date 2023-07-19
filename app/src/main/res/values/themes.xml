@@ -9,9 +9,15 @@
         <item name="colorAccent">@color/colorAccept</item>
 
         <!-- BottomNavigation change options -->
-        <item name="colorOnSurfaceVariant">@color/white</item>
-        <item name="colorOnSecondaryContainer">@color/colorPrimaryDark</item>
+        <item name="colorOnSurfaceVariant">@color/gray</item>
+        <item name="colorOnSecondaryContainer">@color/colorPrimary</item>
         <item name="colorSecondaryContainer">@color/white</item>
+
+
+        <!-- StatusBar -->
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/background</item>
+
     </style>
 
     <style name="Theme.FoodDeliveryApp_bek" parent="Base.Theme.FoodDeliveryApp_bek" />

@@ -7,10 +7,10 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import uz.gita.fooddeliveryapp_bek.data.common.MenuData
-import uz.gita.fooddeliveryapp_bek.databinding.ItemCategoryBinding
+import uz.gita.fooddeliveryapp_bek.databinding.ItemCategoryBranchBinding
 import javax.inject.Inject
 
-class MenuAdapter @Inject constructor() : Adapter<MenuAdapter.ItemHolder>() {
+class CategoryBranchAdapter @Inject constructor() : Adapter<CategoryBranchAdapter.ItemHolder>() {
 
     private var list: List<MenuData> = ArrayList()
 
@@ -25,7 +25,7 @@ class MenuAdapter @Inject constructor() : Adapter<MenuAdapter.ItemHolder>() {
         onItemClickListener = l
     }
 
-    inner class ItemHolder(private val binding: ItemCategoryBinding) :
+    inner class ItemHolder(private val binding: ItemCategoryBranchBinding) :
         ViewHolder(binding.root) {
 
         init {
@@ -52,7 +52,7 @@ class MenuAdapter @Inject constructor() : Adapter<MenuAdapter.ItemHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         return ItemHolder(
-            ItemCategoryBinding.inflate(
+            ItemCategoryBranchBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false

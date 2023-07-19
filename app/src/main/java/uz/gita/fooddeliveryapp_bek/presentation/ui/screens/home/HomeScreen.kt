@@ -14,7 +14,6 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import dagger.hilt.android.AndroidEntryPoint
 import uz.gita.fooddeliveryapp_bek.R
 import uz.gita.fooddeliveryapp_bek.databinding.ScreenHomeBinding
-import uz.gita.fooddeliveryapp_bek.presentation.ui.adapters.CategoryAdapter
 import uz.gita.fooddeliveryapp_bek.presentation.ui.adapters.MenuAdapter
 import uz.gita.fooddeliveryapp_bek.presentation.ui.adapters.ProductAdapter
 import uz.gita.fooddeliveryapp_bek.utils.categories
@@ -29,9 +28,6 @@ class HomeScreen : Fragment(R.layout.screen_home) {
 
     @Inject
     lateinit var productAdapter: ProductAdapter
-
-    @Inject
-    lateinit var categoryAdapter: CategoryAdapter
 
     @Inject
     lateinit var menuAdapter: MenuAdapter
@@ -61,10 +57,6 @@ class HomeScreen : Fragment(R.layout.screen_home) {
 
         viewmodel.offersData.observe(viewLifecycleOwner) {
             binding.imageSlider.setImageList(it, ScaleTypes.FIT)
-        }
-
-        categoryAdapter.setClickListener {
-            viewmodel.getFoodsByCategory(it)
         }
 
         productAdapter.setClickListener {

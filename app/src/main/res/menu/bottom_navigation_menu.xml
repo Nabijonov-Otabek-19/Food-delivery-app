@@ -7,6 +7,11 @@
         android:title="Home" />
 
     <item
+        android:id="@+id/categoriesScreen"
+        android:icon="@drawable/ic_menu"
+        android:title="Bo'limlar" />
+
+    <item
         android:id="@+id/favouriteScreen"
         android:icon="@drawable/ic_star"
         android:title="Favourite" />

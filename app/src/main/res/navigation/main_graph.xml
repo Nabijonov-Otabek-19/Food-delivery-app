@@ -9,7 +9,7 @@
         android:id="@+id/homeScreen"
         android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.home.HomeScreen"
         android:label="HomeScreen"
-        tools:layout="@layout/screen_home" >
+        tools:layout="@layout/screen_home">
         <action
             android:id="@+id/action_homeScreen_to_detailScreen"
             app:destination="@id/detailScreen" />
@@ -49,7 +49,7 @@
         android:id="@+id/detailScreen"
         android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.detail.DetailScreen"
         android:label="DetailScreen"
-        tools:layout="@layout/screen_detail" >
+        tools:layout="@layout/screen_detail">
         <argument
             android:name="productData"
             app:argType="uz.gita.fooddeliveryapp_bek.data.common.ProductData" />
@@ -59,9 +59,15 @@
         android:id="@+id/favouriteScreen"
         android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.favourite.FavouriteScreen"
         android:label="FavouriteScreen"
-        tools:layout="@layout/screen_favourite" >
+        tools:layout="@layout/screen_favourite">
         <action
             android:id="@+id/action_favouriteScreen_to_detailScreen"
             app:destination="@id/detailScreen" />
     </fragment>
+
+    <fragment
+        android:id="@+id/categoriesScreen"
+        android:name="uz.gita.fooddeliveryapp_bek.presentation.ui.screens.categories.CategoriesScreen"
+        android:label="CategoriesScreen"
+        tools:layout="@layout/screen_category_branch" />
 </navigation>
