@@ -2,7 +2,6 @@ package uz.gita.fooddeliveryapp_bek.presentation.ui.screens.home
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -17,6 +16,7 @@ import uz.gita.fooddeliveryapp_bek.databinding.ScreenHomeBinding
 import uz.gita.fooddeliveryapp_bek.presentation.ui.adapters.MenuAdapter
 import uz.gita.fooddeliveryapp_bek.presentation.ui.adapters.ProductAdapter
 import uz.gita.fooddeliveryapp_bek.utils.categories
+import uz.gita.fooddeliveryapp_bek.utils.logger
 import uz.gita.fooddeliveryapp_bek.utils.toast
 import javax.inject.Inject
 
@@ -48,7 +48,8 @@ class HomeScreen : Fragment(R.layout.screen_home) {
         }
 
         viewmodel.errorData.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            toast(it)
+            logger("HomeScreen error = $it")
         }
 
         viewmodel.foodsData.observe(viewLifecycleOwner) {
@@ -64,7 +65,7 @@ class HomeScreen : Fragment(R.layout.screen_home) {
         }
 
         menuAdapter.setOnItemClickListener {
-            requireContext().toast(it.title)
+            toast(it.title)
         }
 
 

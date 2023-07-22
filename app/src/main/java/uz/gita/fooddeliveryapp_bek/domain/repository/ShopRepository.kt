@@ -7,9 +7,10 @@ import uz.gita.fooddeliveryapp_bek.data.common.ProductData
 
 interface ShopRepository {
 
+    fun getProductsByCategory(categoryTitle: String): Flow<Result<List<ProductData>>>
+
     fun getCategories(): Flow<Result<List<CategoryData>>>
     fun getFoods(): Flow<Result<List<ProductData>>>
-    fun getOffers(): Flow<Result<List<SlideModel>>>
 
-    fun getProductsByCategory(categoryTitle: String): Flow<Result<List<ProductData>>>
+    fun getOffers(): Flow<Result<List<SlideModel>>>
 }

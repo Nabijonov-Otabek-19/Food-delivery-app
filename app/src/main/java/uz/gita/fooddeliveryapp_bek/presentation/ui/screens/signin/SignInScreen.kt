@@ -22,7 +22,7 @@ class SignInScreen : Fragment(R.layout.screen_signin) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.errorData.observe(viewLifecycleOwner) {
-            requireContext().toast(it)
+            toast(it)
             logger("Sign in error = $it")
         }
 
@@ -40,7 +40,7 @@ class SignInScreen : Fragment(R.layout.screen_signin) {
                 if (email.isNotEmpty() && password.isNotEmpty()) {
                     viewModel.signIn(email, password)
                 } else {
-                    requireContext().toast("Fill the form")
+                    toast("Fill the form")
                 }
             }
 

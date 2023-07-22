@@ -17,6 +17,38 @@ class ShopRepositoryImpl @Inject constructor() : ShopRepository {
 
     private val firestore = Firebase.firestore
 
+    override fun getProductsByCategory(categoryTitle: String)
+            : Flow<Result<List<ProductData>>> = callbackFlow {
+
+        if (categoryTitle == "All") {
+            firestore.collection("foods").get()
+                .addOnSuccessListener { query ->
+                    val list = arrayListOf<ProductData>()
+                    query.forEach { foods ->
+                        val food = foods.toObject<ProductData>()
+                        list.add(food)
+                    }
+                    trySend(Result.success(list))
+                }
+                .addOnFailureListener { trySend(Result.failure(it)) }
+
+        } else {
+            firestore.collection("foods")
+                .whereEqualTo("category", categoryTitle).get()
+                .addOnSuccessListener { query ->
+                    val list = arrayListOf<ProductData>()
+                    query.forEach { foods ->
+                        val food = foods.toObject<ProductData>()
+                        list.add(food)
+                    }
+                    trySend(Result.success(list))
+                }
+                .addOnFailureListener { trySend(Result.failure(it)) }
+        }
+
+        awaitClose()
+    }
+
     override fun getCategories()
             : Flow<Result<List<CategoryData>>> = callbackFlow {
 
@@ -60,38 +92,6 @@ class ShopRepositoryImpl @Inject constructor() : ShopRepository {
                 trySend(Result.success(list))
             }
             .addOnFailureListener { trySend(Result.failure(it)) }
-        awaitClose()
-    }
-
-    override fun getProductsByCategory(categoryTitle: String)
-            : Flow<Result<List<ProductData>>> = callbackFlow {
-
-        if (categoryTitle == "All") {
-            firestore.collection("foods").get()
-                .addOnSuccessListener { query ->
-                    val list = arrayListOf<ProductData>()
-                    query.forEach { foods ->
-                        val food = foods.toObject<ProductData>()
-                        list.add(food)
-                    }
-                    trySend(Result.success(list))
-                }
-                .addOnFailureListener { trySend(Result.failure(it)) }
-
-        } else {
-            firestore.collection("foods")
-                .whereEqualTo("category", categoryTitle).get()
-                .addOnSuccessListener { query ->
-                    val list = arrayListOf<ProductData>()
-                    query.forEach { foods ->
-                        val food = foods.toObject<ProductData>()
-                        list.add(food)
-                    }
-                    trySend(Result.success(list))
-                }
-                .addOnFailureListener { trySend(Result.failure(it)) }
-        }
-
         awaitClose()
     }
 }

@@ -28,7 +28,7 @@ class CategoriesScreen : Fragment(R.layout.screen_category_branch) {
         adapter.setData(categoryBolimlar)
 
         adapter.setOnItemClickListener {
-            requireContext().toast(it.title)
+            toast(it.title)
         }
 
         binding.apply {

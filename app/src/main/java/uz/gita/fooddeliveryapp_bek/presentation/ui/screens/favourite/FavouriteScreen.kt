@@ -33,7 +33,7 @@ class FavouriteScreen : Fragment(R.layout.screen_favourite) {
         }
 
         viewmodel.errorData.observe(viewLifecycleOwner) {
-            requireContext().toast("Favourite error = $it")
+            toast("Favourite error = $it")
         }
 
         viewmodel.productsData.observe(viewLifecycleOwner) {

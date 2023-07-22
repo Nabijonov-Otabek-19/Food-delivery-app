@@ -1,14 +1,14 @@
 package uz.gita.fooddeliveryapp_bek.utils
 
-import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import uz.gita.fooddeliveryapp_bek.R
 import uz.gita.fooddeliveryapp_bek.data.common.MenuData
 
 
-fun Context.toast(message: String) {
-    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+fun Fragment.toast(message: String) {
+    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 }
 
 fun logger(message: String) {
